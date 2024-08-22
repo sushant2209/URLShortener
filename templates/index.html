@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        body,
+        html {
             height: 100%;
             margin: 0;
             font-family: 'Inter', sans-serif;
@@ -15,22 +17,27 @@
             justify-content: center;
             align-items: center;
         }
+
         .container {
             width: 100%;
             max-width: 500px;
             padding: 2rem;
         }
+
         h1 {
+            text-align: center;
             font-size: 2.5rem;
             color: #1a202c;
             margin-bottom: 1.5rem;
             font-weight: 600;
         }
+
         form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         input[type="url"] {
             width: 100%;
             padding: 0.75rem 1rem;
@@ -40,10 +47,12 @@
             margin-bottom: 1rem;
             transition: border-color 0.3s ease;
         }
+
         input[type="url"]:focus {
             outline: none;
             border-color: #4299e1;
         }
+
         button {
             padding: 0.75rem 1rem;
             font-size: 1rem;
@@ -54,23 +63,33 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         button:hover {
             background-color: #3182ce;
         }
+
         .result {
             margin-top: 1.5rem;
             padding: 1rem;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
+
         .result a {
             color: #4299e1;
             text-decoration: none;
             font-weight: 600;
         }
+
+        .link {
+            margin-top: 15px;
+            text-align: center;
+        }
+       
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>URL Shortener</h1>
@@ -82,7 +101,9 @@
         <div class="result">
             <p>Your shortened URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
         </div>
+        <div class="link"><a href="/">Return to homepage</a></div>
         {% endif %}
     </div>
 </body>
+
 </html>
