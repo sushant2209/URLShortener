@@ -14,7 +14,8 @@ templates = Jinja2Templates(directory="templates")
 
 
 # Database setup
-SQLALCHEMY_DATABASE_URL = os.environ.get('SQLALCHEMY_DATABASE_URL')
+# SQLALCHEMY_DATABASE_URL = os.environ.get('SQLALCHEMY_DATABASE_URL')
+SQLALCHEMY_DATABASE_URL = "postgresql://urlShortener_owner:x2qHbcr6Jvle@ep-shy-glitter-a1vcooyq.ap-southeast-1.aws.neon.tech/urlShortener?sslmode=require"
 
 # Create a SQLAlchemy engine instance
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
