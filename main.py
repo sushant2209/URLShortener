@@ -82,3 +82,7 @@ def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
     if db_url is None:
         raise HTTPException(status_code=404, detail="URL not found")
     return RedirectResponse(url=db_url.original_url)
+
+@app.get("/docs", response_class=HTMLResponse)
+async def read_documentation(request: Request):
+    return templates.TemplateResponse("docs.html", {"request": request})
