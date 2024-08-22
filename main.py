@@ -8,6 +8,11 @@ from pydantic import BaseModel
 import string
 import random
 from starlette.responses import RedirectResponse
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  
+
 
 
 templates = Jinja2Templates(directory="templates")
@@ -15,7 +20,7 @@ templates = Jinja2Templates(directory="templates")
 
 # Database setup
 # Get the database URL from an environment variable, or use a default value
-SQLALCHEMY_DATABASE_URL = "postgresql://urlShortener_owner:x2qHbcr6Jvle@ep-shy-glitter-a1vcooyq.ap-southeast-1.aws.neon.tech/urlShortener?sslmode=require"
+SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
 # Create a SQLAlchemy engine instance
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
@@ -82,6 +87,7 @@ def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
     if db_url is None:
         raise HTTPException(status_code=404, detail="URL not found")
     return RedirectResponse(url=db_url.original_url)
+
 
 @app.get("/docs", response_class=HTMLResponse)
 async def read_documentation(request: Request):
