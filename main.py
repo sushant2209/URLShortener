@@ -8,25 +8,18 @@ from pydantic import BaseModel
 import string
 import random
 from starlette.responses import RedirectResponse
-from dotenv import load_dotenv
 import os
-
-load_dotenv()  
-
-
 
 templates = Jinja2Templates(directory="templates")
 
 
 # Database setup
-# Get the database URL from an environment variable, or use a default value
-SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
+SQLALCHEMY_DATABASE_URL = os.environ.get('SQLALCHEMY_DATABASE_URL')
+
 # Create a SQLAlchemy engine instance
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # Create a SessionLocal class
-# autocommit=False: Transactions are not automatically committed
-# autoflush=False: Changes are not automatically flushed to the database
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Create a base class for declarative models
