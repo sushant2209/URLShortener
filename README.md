@@ -22,6 +22,6 @@ Welcome to the **URL Shortener Web App**! This project is a simple and efficient
 
 ## 📄 API Documentation
 
-- The API documentation is available at `/docs`
+- The API documentation is available at `/documentation`
 
 Made with ❤️ by Sushant
