@@ -14,8 +14,8 @@ templates = Jinja2Templates(directory="templates")
 
 
 # Database setup
-# SQLALCHEMY_DATABASE_URL = os.environ.get('SQLALCHEMY_DATABASE_URL')
-SQLALCHEMY_DATABASE_URL = "postgresql://urlShortener_owner:x2qHbcr6Jvle@ep-shy-glitter-a1vcooyq.ap-southeast-1.aws.neon.tech/urlShortener?sslmode=require"
+SQLALCHEMY_DATABASE_URL = os.environ.get('SQLALCHEMY_DATABASE_URL')
+# SQLALCHEMY_DATABASE_URL = "postgresql://urlShortener_owner:x2qHbcr6Jvle@ep-shy-glitter-a1vcooyq.ap-southeast-1.aws.neon.tech/urlShortener?sslmode=require"
 
 # Create a SQLAlchemy engine instance
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
@@ -74,7 +74,11 @@ async def shorten_url(request: Request, url: str = Form(...), db: Session = Depe
     db.refresh(db_url)
     short_url = f"{request.base_url}{short_code}"
     return templates.TemplateResponse("index.html", {"request": request, "short_url": short_url})
-
+    
+@app.get("/documentation", response_class=HTMLResponse)
+async def read_documentation(request: Request):
+    return templates.TemplateResponse("docs.html", {"request": request})
+    
 @app.get("/{short_code}")
 def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
     db_url = db.query(URL).filter(URL.short_code == short_code).first()
@@ -83,6 +87,4 @@ def redirect_to_original(short_code: str, db: Session = Depends(get_db)):
     return RedirectResponse(url=db_url.original_url)
 
 
-@app.get("/docs", response_class=HTMLResponse)
-async def read_documentation(request: Request):
-    return templates.TemplateResponse("docs.html", {"request": request})
+
