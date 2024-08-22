@@ -14,6 +14,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #f4f7f9;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -22,6 +23,7 @@
             width: 100%;
             max-width: 500px;
             padding: 2rem;
+            flex-grow: 1;
         }
 
         h1 {
@@ -86,7 +88,14 @@
             margin-top: 15px;
             text-align: center;
         }
-       
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            color: #718096;
+            font-size: 0.875rem;
+        }
     </style>
 </head>
 
@@ -104,6 +113,9 @@
         <div class="link"><a href="/">Return to homepage</a></div>
         {% endif %}
     </div>
+    <footer>
+        Made with ❤️ by Sushant
+    </footer>
 </body>
 
 </html>
